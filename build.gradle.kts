@@ -45,7 +45,7 @@ subprojects {
     }
 
     cloudstream {
-        setRepo("https://github.com/saimuelbr/saimuelrepo") 
+        setRepo("https://github.com/Dankkj0/Seilar") 
         authors = listOf("saimuelbr")
     }
 
