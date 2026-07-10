@@ -1,0 +1,35 @@
+name: Build and Publish Plugins
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+
+      - name: Build Plugins
+        run: |
+          chmod +x gradlew
+          ./gradlew make
+          ./gradlew makePluginsJson
+
+      - name: Commit and Push Builds
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add builds/ repo.json plugins.json
+          git commit -m "Automated build from GitHub Actions" || exit 0
+          git push origin main
+          
