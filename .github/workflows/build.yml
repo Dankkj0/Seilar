@@ -23,20 +23,12 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew make
-          ./gradlew makePluginsJson
 
-      - name: Commit and Push Builds
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
       - name: Commit and Push Builds
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add builds/
-          git commit -m "Automated build from GitHub Actions" || exit 0
-          git push origin main
-
           git commit -m "Automated build from GitHub Actions" || exit 0
           git push origin main
           
