@@ -21,4 +21,7 @@ File(rootDir, ".").listFiles()?.filter {
 }?.forEach { 
     include(":${it.name}") 
 }
+rootProject.name = "CloudstreamPlugins"
+
+// Remove as linhas de varredura automática temporariamente e deixa apenas isso:
 include(":PobreFlix")
