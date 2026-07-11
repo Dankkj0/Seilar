@@ -29,7 +29,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add builds/ repo.json plugins.json
+      - name: Commit and Push Builds
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add builds/
+          git commit -m "Automated build from GitHub Actions" || exit 0
+          git push origin main
+
           git commit -m "Automated build from GitHub Actions" || exit 0
           git push origin main
           
